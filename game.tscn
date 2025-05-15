@@ -199,7 +199,7 @@ spell_name = "Fire Ball"
 spell_shape = NodePath("../../../../Player/Inventory/Ball")
 
 [node name="Player" parent="." instance=ExtResource("1_gxwgs")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 1, -13)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 1, -12)
 HEALTH = 50.0
 ROTATE_SPEED = 25
 
