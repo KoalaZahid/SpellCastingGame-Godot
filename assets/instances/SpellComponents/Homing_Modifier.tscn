@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwei62qr0jhlw"]
+
+[ext_resource type="Script" uid="uid://15s8ygolqddg" path="res://assets/scripts/SpellComponents/spell_component_class.gd" id="1_qq2wy"]
+
+[node name="Homing_Modifier" type="Node3D"]
+script = ExtResource("1_qq2wy")
+modifier_name = "Homing"
+cast_cost = 0.2
+description = "The projectile moves towards the nearest enemy."
+shield_restriction = true

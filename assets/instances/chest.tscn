@@ -1,0 +1,45 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1hgydtnydbhu"]
+
+[ext_resource type="Script" uid="uid://cw6v2i4b42dtm" path="res://assets/scripts/chest.gd" id="1_crxfs"]
+[ext_resource type="Texture2D" uid="uid://cklwq5txakxo" path="res://assets/textures/WoodFloor051_1K-JPG_Color.jpg" id="1_pyje2"]
+[ext_resource type="Texture2D" uid="uid://dmnsyo7467rf5" path="res://assets/textures/WoodFloor051_1K-JPG_AmbientOcclusion.jpg" id="2_hhcyv"]
+[ext_resource type="Texture2D" uid="uid://fl632gjmooh1" path="res://assets/textures/WoodFloor051_1K-JPG_NormalGL.jpg" id="3_0f40e"]
+[ext_resource type="Texture2D" uid="uid://bqyuajmjxkm13" path="res://assets/textures/WoodFloor051_1K-JPG_Roughness.jpg" id="4_bshdx"]
+[ext_resource type="PackedScene" uid="uid://q251cdv574cj" path="res://assets/instances/Interactions/InteractionArea.tscn" id="6_ssi27"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6w7pp"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljv0i"]
+albedo_texture = ExtResource("1_pyje2")
+roughness_texture = ExtResource("4_bshdx")
+normal_enabled = true
+normal_texture = ExtResource("3_0f40e")
+ao_enabled = true
+ao_texture = ExtResource("2_hhcyv")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_riyxr"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aiir4"]
+radius = 0.75
+
+[node name="Chest" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_crxfs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000142336, 0.0050509, 0.00145555)
+mesh = SubResource("BoxMesh_6w7pp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ljv0i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_riyxr")
+
+[node name="InteractionArea" parent="." instance=ExtResource("6_ssi27")]
+action_name = "OPEN"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_aiir4")

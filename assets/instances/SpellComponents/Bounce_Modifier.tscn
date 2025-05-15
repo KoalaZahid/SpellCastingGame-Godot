@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6dugars4a3sg"]
+
+[ext_resource type="Script" uid="uid://cn8hln46ereds" path="res://assets/scripts/SpellComponents/num_attr_component.gd" id="1_xcco8"]
+
+[node name="Bounce_Modifier" type="Node3D"]
+script = ExtResource("1_xcco8")
+MAX_AMOUNT = 3
+amount = 1
+individual_amt = 0.15
+modifier_name = "Bounce"
+cast_cost = 0.15
+description = "Spell can bounce off walls or enemies."
+shield_restriction = true

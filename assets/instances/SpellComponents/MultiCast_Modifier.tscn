@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bysfshy88ujwd"]
+
+[ext_resource type="Script" uid="uid://cn8hln46ereds" path="res://assets/scripts/SpellComponents/num_attr_component.gd" id="1_wss8l"]
+
+[node name="MultiCast_Modifier" type="Node3D"]
+script = ExtResource("1_wss8l")
+MIN_AMOUNT = 2
+individual_amt = 0.1
+modifier_name = "Multicast"
+cast_cost = 0.1
+description = "Allows the spell to be casted multiple times."

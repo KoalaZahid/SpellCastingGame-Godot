@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://0dyxle2qjymh"]
+
+[ext_resource type="Script" uid="uid://b316mkg7wccmh" path="res://assets/scripts/enemy.gd" id="1_b71vj"]
+[ext_resource type="Script" uid="uid://m6nj5oqa3caf" path="res://assets/scripts/enemy_health_bar.gd" id="2_dh32l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oacv0"]
+albedo_color = Color(0.111197, 0.111197, 0.111197, 1)
+clearcoat_enabled = true
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1r5rj"]
+material = SubResource("StandardMaterial3D_oacv0")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oh157"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7b561"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8v8v"]
+bg_color = Color(0.637166, 0, 0.0691363, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nwbrp"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 8
+collision_mask = 14
+script = ExtResource("1_b71vj")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("CapsuleMesh_1r5rj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.140957, 0, 0, 0, 1, 0, 0.407411, -0.284452)
+mesh = SubResource("CylinderMesh_oh157")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7b561")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.5
+offset_top = -19.0
+offset_right = 119.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_w8v8v")
+value = 33.49
+show_percentage = false
+script = ExtResource("2_dh32l")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 1, 0, 1.2, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_nwbrp")
+
+[connection signal="died" from="." to="." method="_on_died"]
+[connection signal="health_changed" from="." to="SubViewport/HealthBar" method="_on_enemy_health_changed"]

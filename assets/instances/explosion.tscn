@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://dd8jgbili4c5w"]
+
+[ext_resource type="Script" uid="uid://3mn8jqjbjjmt" path="res://assets/scripts/explosion.gd" id="1_an7c7"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_lf11u"]
+
+[sub_resource type="Curve" id="Curve_lx0ul"]
+_data = [Vector2(0.00609757, 1), 0.0, 0.0, 0, 0, Vector2(0.493902, 0.230769), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_um8o3"]
+curve = SubResource("Curve_lx0ul")
+
+[sub_resource type="Curve" id="Curve_ufvxw"]
+_data = [Vector2(0, 0.197802), 0.0, 2.61008, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ku1je"]
+curve = SubResource("Curve_ufvxw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3vwom"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+radial_velocity_min = 6.49998
+radial_velocity_max = 7.49998
+radial_velocity_curve = SubResource("CurveTexture_um8o3")
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 1.7
+scale_curve = SubResource("CurveTexture_ku1je")
+alpha_curve = SubResource("CurveTexture_lf11u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ctfx"]
+shading_mode = 0
+albedo_color = Color(1, 0.501398, 0.21721, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_i3jkc"]
+material = SubResource("StandardMaterial3D_4ctfx")
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hp3ri"]
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_an7c7")
+
+[node name="OnImpact" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+emitting = false
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_3vwom")
+draw_pass_1 = SubResource("SphereMesh_i3jkc")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_hp3ri")

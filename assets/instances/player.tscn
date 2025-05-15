@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://rj78yp671xig"]
+
+[ext_resource type="Script" uid="uid://cbrlrdrdw0qbp" path="res://assets/scripts/player.gd" id="1_1sm80"]
+[ext_resource type="Shader" uid="uid://f1fgatdl4w3x" path="res://assets/shaders/fresnel.gdshader" id="2_pn28r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eatqx"]
+render_priority = 0
+shader = ExtResource("2_pn28r")
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/rim_brightness = 5.0
+shader_parameter/rim_size = 1.3
+shader_parameter/rim_transparency = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4271k"]
+next_pass = SubResource("ShaderMaterial_eatqx")
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.496105, 0.392696, 0.615407, 1)
+subsurf_scatter_enabled = true
+subsurf_scatter_skin_mode = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h7gk7"]
+material = SubResource("StandardMaterial3D_4271k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3v07i"]
+render_priority = 0
+shader = ExtResource("2_pn28r")
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/rim_brightness = 5.0
+shader_parameter/rim_size = 1.3
+shader_parameter/rim_transparency = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxp4y"]
+next_pass = SubResource("ShaderMaterial_3v07i")
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.801581, 0.862826, 0.984504, 1)
+metallic = 1.0
+roughness = 0.2
+clearcoat_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ldpg1"]
+material = SubResource("StandardMaterial3D_nxp4y")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c5bla"]
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 5
+collision_mask = 2
+script = ExtResource("1_1sm80")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" type="MeshInstance3D" parent="Pivot"]
+gi_mode = 2
+mesh = SubResource("CapsuleMesh_h7gk7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot/Character"]
+transform = Transform3D(0.7, 0, 0, 0, 0.2, 0, 0, 0, 0.7, 0, 0.298231, -0.355131)
+gi_mode = 2
+mesh = SubResource("CylinderMesh_ldpg1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_c5bla")

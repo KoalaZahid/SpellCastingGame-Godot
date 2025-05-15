@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceqd5sitbkbj4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huv7p"]
+bg_color = Color(0.156863, 0.145098, 0.172549, 1)
+
+[node name="ComponentItem" type="Panel"]
+custom_minimum_size = Vector2(244, 35)
+offset_right = 254.0
+offset_bottom = 35.0
+
+[node name="ComponentItem" type="Button" parent="."]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 35.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_huv7p")
+
+[node name="Description" type="RichTextLabel" parent="ComponentItem"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 223.0
+offset_bottom = 40.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "Mulitcast (8)  [color=cyan]+0.10s[/color]  [color=coral]+5 MP[/color]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Button" type="Button" parent="ComponentItem"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 2.0
+offset_right = 253.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 1, 0.00607109, 1)
+text = "+"
+
+[node name="ComponentItem_Old" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 35.0
+color = Color(0.158667, 0.14319, 0.174144, 1)
+
+[node name="Description" type="RichTextLabel" parent="ComponentItem_Old"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 215.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "Mulitcast (8)  [color=cyan]+0.1s[/color]  [color=coral]+5 MP[/color]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Button" type="Button" parent="ComponentItem_Old"]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 2.0
+offset_right = 242.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 1, 0.00607109, 1)
+text = "+"

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cihs3y14gd8fe"]
+
+[ext_resource type="Script" uid="uid://bfkxvy0rwlfw8" path="res://assets/scripts/SpellComponents/shape_modifier.gd" id="1_p3b8k"]
+
+[node name="ShapeModifier" type="Node3D"]
+script = ExtResource("1_p3b8k")

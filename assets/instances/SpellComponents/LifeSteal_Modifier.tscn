@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://624l5th5wp2r"]
+
+[ext_resource type="Script" uid="uid://15s8ygolqddg" path="res://assets/scripts/SpellComponents/spell_component_class.gd" id="1_50x6x"]
+
+[node name="LifeSteal_Modifier" type="Node3D"]
+script = ExtResource("1_50x6x")
+modifier_name = "Life Steal"
+cast_cost = 0.2
+description = "On impact, the spell takes the enemy’s health and heals the player."
+shield_restriction = true

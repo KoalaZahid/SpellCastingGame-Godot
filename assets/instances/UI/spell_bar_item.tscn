@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2p01qvuga3gx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_868vb"]
+resource_local_to_scene = true
+bg_color = Color(0.501961, 0.258824, 0.258824, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tysme"]
+resource_local_to_scene = true
+bg_color = Color(0.258824, 0.501961, 0.271642, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(67, 67)
+offset_right = 67.0
+offset_bottom = 67.0
+theme_override_styles/disabled = SubResource("StyleBoxFlat_868vb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tysme")
+disabled = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 67.0
+offset_bottom = 67.0
+mouse_filter = 1
+value = 73.87
+show_percentage = false
+
+[node name="Input" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 41.0
+offset_bottom = 20.0
+mouse_filter = 1
+text = "1"
+
+[node name="SpellName" type="Label" parent="."]
+layout_mode = 0
+offset_right = 67.0
+offset_bottom = 67.0
+mouse_filter = 1
+text = "Fire Ball"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
