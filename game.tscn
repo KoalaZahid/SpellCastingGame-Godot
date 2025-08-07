@@ -1,8 +1,9 @@
-[gd_scene load_steps=46 format=3 uid="uid://c5l4g6sbkaap5"]
+[gd_scene load_steps=49 format=3 uid="uid://c5l4g6sbkaap5"]
 
 [ext_resource type="Environment" uid="uid://hfrltlyxla57" path="res://assets/materials/worldEnvironment.tres" id="1_agsqe"]
 [ext_resource type="PackedScene" uid="uid://rj78yp671xig" path="res://assets/instances/player.tscn" id="1_gxwgs"]
 [ext_resource type="PackedScene" uid="uid://0dyxle2qjymh" path="res://assets/instances/enemy.tscn" id="2_7e63c"]
+[ext_resource type="Script" uid="uid://vwxyuhp0rhq3" path="res://assets/shaders/StylizedPostProcess.gd" id="2_i2p71"]
 [ext_resource type="Shader" uid="uid://dd8odwh7xs5jx" path="res://assets/shaders/test_PostProcess.gdshader" id="3_catwk"]
 [ext_resource type="Material" uid="uid://pjs3vvcxv158" path="res://assets/materials/brick_texture.tres" id="3_sxqup"]
 [ext_resource type="Script" uid="uid://cw6hno2d7f037" path="res://assets/scripts/camera.gd" id="6_bk5pj"]
@@ -25,6 +26,21 @@
 [ext_resource type="PackedScene" uid="uid://dsbdgqpec7q5f" path="res://assets/instances/spell_tester_scene.tscn" id="23_ld1gn"]
 [ext_resource type="Script" uid="uid://b3fit0upm5s04" path="res://assets/scripts/pause_menu.gd" id="24_q3krr"]
 [ext_resource type="Script" uid="uid://dpveo5m3egl10" path="res://assets/scripts/spell_editor.gd" id="25_33rrm"]
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_i2p71"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("2_i2p71")
+shade_smoothness = 0.81
+color_bands = 12.0
+metadata/_custom_type_script = "uid://vwxyuhp0rhq3"
+
+[sub_resource type="Compositor" id="Compositor_xa8c5"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_i2p71")])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qta6k"]
 render_priority = 0
@@ -54,7 +70,7 @@ render_priority = 0
 shader = ExtResource("7_ratyp")
 shader_parameter/noise_texture = ExtResource("8_ovstg")
 shader_parameter/texture_mask = ExtResource("9_4xobp")
-shader_parameter/emission_intensity = 2.0
+shader_parameter/emission_intensity = 9.5
 shader_parameter/time_scale = 3.0
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/edge_softness = 0.1
@@ -145,6 +161,8 @@ material = SubResource("ShaderMaterial_tcyik")
 [node name="Main" type="Node"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_agsqe")
+compositor = SubResource("Compositor_xa8c5")
 
 [node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, -13)
@@ -153,8 +171,7 @@ camera_sensitivity = 2.0
 target = NodePath("../Player")
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
-transform = Transform3D(1, -1.19209e-07, 2.38419e-07, 3.55261e-15, 0.866025, 0.5, -2.38419e-07, -0.5, 0.866025, -0.22198, 7.15, 10.1848)
-environment = ExtResource("1_agsqe")
+transform = Transform3D(1, -1.19209e-07, 2.38419e-07, -1.77638e-14, 0.866025, 0.500001, -2.38419e-07, -0.5, 0.866025, -0.22198, 7.15, 10.1848)
 projection = 1
 fov = 37.8493
 size = 15.0
@@ -162,6 +179,7 @@ far = 150.0
 
 [node name="PostProcess" type="MeshInstance3D" parent="Camera"]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 6.36396, -3, -6.36396)
+visible = false
 sorting_use_aabb_center = false
 cast_shadow = 0
 extra_cull_margin = 16384.0
@@ -171,10 +189,11 @@ mesh = SubResource("QuadMesh_s63j6")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.766706, 0.641998, 0, -0.641998, -0.766706, 0, 14.8554, 0)
-light_angular_distance = 1.0
+light_angular_distance = 2.2
 shadow_enabled = true
-directional_shadow_mode = 1
+directional_shadow_mode = 0
 directional_shadow_blend_splits = true
+sky_mode = 1
 
 [node name="Effects" type="Node3D" parent="."]
 
@@ -322,9 +341,10 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_xqumn")
 draw_pass_1 = SubResource("QuadMesh_v3eqb")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Fire/FireParticles"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Fire"]
 light_color = Color(1, 0.583333, 0, 1)
-light_energy = 3.0
+light_energy = 6.773
+light_size = 0.512
 shadow_blur = 10.0
 omni_attenuation = 0.107
 

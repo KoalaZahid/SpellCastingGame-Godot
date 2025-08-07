@@ -47,15 +47,15 @@ void fragment() {
 	vec2 uv = SCREEN_UV;
 
 	vec4 screen_color = texture(SCREEN_TEXTURE, uv);
-	vec3 normal_view_space = texture(NORMAL_TEXTURE, uv).rgb;
-	normal_view_space = normal_view_space * 2.0 - 1.0;
+	//vec3 normal_view_space = texture(NORMAL_TEXTURE, uv).rgb;
+	//normal_view_space = normal_view_space * 2.0 - 1.0;
 	//vec3 normals_world = (INV_VIEW_MATRIX * vec4(normal_view_space, 0.0)).xyz;
 	//float roughness = texture(NORMAL_TEXTURE, uv).w;
 
-	float depth = texture(DEPTH_TEXTURE, uv).x;
-	vec3 ndc = vec3(uv * 2.0 - 1.0, depth);
-	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
-	view.xyz/=view.w;
+	//float depth = texture(DEPTH_TEXTURE, uv).x;
+	//vec3 ndc = vec3(uv * 2.0 - 1.0, depth);
+	//vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+	//view.xyz/=view.w;
 	//float linear_depth = -view.z;
 
 	// Shader Code

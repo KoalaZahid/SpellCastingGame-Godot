@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dycxwrsus0v06"
+path="res://.godot/imported/StylizedPostProcess.glsl-16a990fcc274a95ead59dfc0d81fbba3.res"
+
+[deps]
+
+source_file="res://assets/shaders/StylizedPostProcess.glsl"
+dest_files=["res://.godot/imported/StylizedPostProcess.glsl-16a990fcc274a95ead59dfc0d81fbba3.res"]
+
+[params]
+
